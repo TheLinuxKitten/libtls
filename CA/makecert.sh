@@ -46,13 +46,13 @@ else
     subject="/emailAddress=${email}/C=CA/ST=Edmonton/O=Bob Beck/OU=Certificanator/CN=${CN}"
 fi
 
-if [ -z "$cflag"]; then
+if [ -z "$cflag" ]; then
     type="server_cert"
 else
-    type="user_cert"
+    type="usr_cert"
 fi
 
-if [ -z "$days"]; then
+if [ -z "$days" ]; then
     days="375"
 fi
 
