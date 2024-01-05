@@ -57,11 +57,11 @@ if [ -z "$days" ]; then
 fi
 
 keyfile="${CN}.key"
-csrfile="${CN},csr"
+csrfile="${CN}.pem"
 crtfile="${CN}.crt"
 
 (cd intermediate && openssl genrsa -out private/${keyfile} 2048)
-(cd intermediate && openssl req -batch -config openssl.cnf -new -key private/client.key -subj "${subject}" -out csr/$csrfile)
+(cd intermediate && openssl req -batch -config openssl.cnf -new -key private/${keyfile} -subj "${subject}" -out csr/${csrfile})
 openssl ca -batch -config intermediate/openssl.cnf -extensions ${type} -days ${days} -notext -md sha256 -in intermediate/csr/${csrfile} -out intermediate/certs/${crtfile}
 if [ $? -eq 0 ]; then
     cp intermediate/private/${keyfile} ${keyfile}
